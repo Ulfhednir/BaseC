@@ -14,42 +14,58 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-h") == 0) {
+    for (int i = 1; i < argc; i++) 
+    {
+        if (strcmp(argv[i], "-h") == 0) 
+        {
             print_help();
             return 0;
-        } else if (strcmp(argv[i], "-f") == 0) {
+        } 
+        else if (strcmp(argv[i], "-f") == 0) 
+        {
             if (i + 1 < argc) {
                 filename = argv[i + 1];
                 i++;
-            } else {
+            } 
+            else 
+            {
                 fprintf(stderr, "No file specified after -f\n");
                 return 1;
             }
-        } else if (strcmp(argv[i], "-m") == 0) {
+        } 
+        else if (strcmp(argv[i], "-m") == 0) 
+        {
             if (i + 1 < argc) {
                 month = atoi(argv[i + 1]);
                 i++;
-            } else {
+            } 
+            else 
+            {
                 fprintf(stderr, "No month specified after -m\n");
                 return 1;
             }
-        } else {
+        } 
+        else 
+        {
             fprintf(stderr, "Unknown option: %s\n", argv[i]);
             return 1;
         }
     }
 
-    if (filename == NULL) {
+    if (filename == NULL) 
+    {
         fprintf(stderr, "Input file not specified\n");
         return 1;
     }
 
     parse_csv(filename, stats, &total_months);
 
-    if (month > 0) {
+    if (month > 0) 
+    {
         print_monthly_stats(stats, month);
-    } else {
+    } 
+    else 
+    {
         print_yearly_stats(stats, total_months);
     }
 

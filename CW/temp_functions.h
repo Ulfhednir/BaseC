@@ -1,7 +1,8 @@
 #ifndef TEMP_FUNCTIONS_H
 #define TEMP_FUNCTIONS_H
 
-typedef struct {
+typedef struct 
+{
     int year;
     int month;
     int day;
@@ -10,7 +11,8 @@ typedef struct {
     int temperature;
 } TemperatureRecord;
 
-typedef struct {
+typedef struct 
+{
     int month;
     double averageTemp;
     int minTemp;
