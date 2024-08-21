@@ -2,13 +2,15 @@
 #include <stdlib.h>
 
 // Структура для хранения узлов дерева с указателем на родителя
-typedef struct tree {
+typedef struct tree
+{
     int key;
     struct tree *left, *right, *parent;
 } tree;
 
 // Функция для создания нового узла дерева
-tree *newNode(int key) {
+tree *newNode(int key)
+{
     tree *node = (tree *)malloc(sizeof(tree));
     node->key = key;
     node->left = node->right = node->parent = NULL;
@@ -16,13 +18,16 @@ tree *newNode(int key) {
 }
 
 // Функция для поиска узла по ключу
-tree *findNode(tree *root, int key) {
-    if (root == NULL || root->key == key) {
+tree *findNode(tree *root, int key)
+{
+    if (root == NULL || root->key == key)
+    {
         return root;
     }
 
     tree *leftSearch = findNode(root->left, key);
-    if (leftSearch != NULL) {
+    if (leftSearch != NULL)
+    {
         return leftSearch;
     }
 
@@ -30,12 +35,14 @@ tree *findNode(tree *root, int key) {
 }
 
 // Функция для поиска брата узла
-tree *findBrother(tree *root, int key) {
+tree *findBrother(tree *root, int key)
+{
     // Находим узел с заданным ключом
     tree *node = findNode(root, key);
-    
+
     // Если узел не найден или у него нет родителя, возвращаем NULL
-    if (node == NULL || node->parent == NULL) {
+    if (node == NULL || node->parent == NULL)
+    {
         return NULL;
     }
 
@@ -43,16 +50,20 @@ tree *findBrother(tree *root, int key) {
     tree *parent = node->parent;
 
     // Проверяем, кто является братом узла
-    if (parent->left == node) {
+    if (parent->left == node)
+    {
         return parent->right; // Брат слева — вернем правый узел
-    } else if (parent->right == node) {
-        return parent->left;  // Брат справа — вернем левый узел
+    }
+    else if (parent->right == node)
+    {
+        return parent->left; // Брат справа — вернем левый узел
     }
 
     return NULL; // Если нет брата
 }
 
-int main() {
+int main()
+{
     // Создаем дерево
     tree *root = newNode(10);
     root->left = newNode(5);
@@ -77,9 +88,12 @@ int main() {
     // Пример использования функции findBrother
     int key = 13;
     tree *brother = findBrother(root, key);
-    if (brother) {
+    if (brother)
+    {
         printf("Brother of node with key %d is node with key %d\n", key, brother->key);
-    } else {
+    }
+    else
+    {
         printf("Node with key %d has no brother\n", key);
     }
 
